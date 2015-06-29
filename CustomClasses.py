@@ -1,10 +1,7 @@
 __author__ = 'Jerry'
 
 from google.appengine.ext import ndb
-import cgi
-import string
-
-#variables representing things that don't change are denoted in all caps
+import csv
 
 class Concept(ndb.Model):
     name = ndb.StringProperty()
@@ -27,26 +24,16 @@ class ConceptPage(ndb.Model):
 
 
 
-    def read_notes_file(self):
-        self.title='Intro to Programming - Stage 4'
-        new_name=''
-        new_description=''
-        notes_file=open('course_notes','r')
-        for line in notes_file:
-            line=line.strip('')
-            line=line.replace("\n","")
-            if line[0:6].lower()=='topic ':
-                if new_description != '':
-                    self.add_concept(new_name,new_description)
-                    new_description=''
-                new_name=line[6:]
-
-            else:
-                if line != '':
-                    if new_description == '':
-                        new_description=new_description+line[:]
-        self.add_concept(new_name,new_description)
+    def read_notes_file(self,filename='course_notes.csv'):
+        notes_file=open(filename,'r')
+        file_reader=csv.reader(notes_file,delimiter='|')
+        for new_line in file_reader:
+            new_name=new_line[0]
+            new_description=new_line[1]
+            self.add_concept(new_name,new_description)
         self.put()
+        notes_file.close()
+
 
 
 

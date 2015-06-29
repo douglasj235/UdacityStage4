@@ -3,7 +3,7 @@ from google.appengine.ext import ndb
 import jinja2
 import webapp2
 import os
-from AustinClasses import *
+from CustomClasses import *
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
@@ -20,6 +20,7 @@ class MainHandler(webapp2.RequestHandler):
     #and then re-query/get
     if not concepts_page:
         concepts_page = ConceptPage()
+        concepts_page.title = 'Intro to Programming - Stage 4'
         concepts_page.read_notes_file()
 
     def get(self):
