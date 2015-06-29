@@ -1,0 +1,16 @@
+h2 {
+    color: rgb(108, 109, 109);
+    background-color:rgb(221,221,221);
+    font-size: 30px;
+    }
+
+body {
+    text-align: left;
+    font-family: Helvetica, Times, serif;
+    font-size: 18px;
+    margin:40px;
+    }
+dt  {
+    color: rgb(80, 80, 80);
+    font-size: 20px;
+    }
