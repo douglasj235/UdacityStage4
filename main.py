@@ -1,5 +1,3 @@
-
-from google.appengine.ext import ndb
 import jinja2
 import webapp2
 import os
