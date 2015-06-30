@@ -11,13 +11,10 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
 
 
 class MainHandler(webapp2.RequestHandler):
-    #create an instance of our ConceptsPage class
-    concepts_page = ConceptPage.query().get() #leaving the arguments blank to return everything.
-                                              #As there is only one page, not an issue. Not great
-                                              #coding practice, but fast for now.
 
-    #check and see if the get() satement returned anything -- if it didn't, create the seed data
-    #and then re-query/get
+    concepts_page = ConceptPage.query().get()
+
+
     if not concepts_page:
         concepts_page = ConceptPage()
         concepts_page.title = 'Intro to Programming - Stage 4'

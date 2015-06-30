@@ -9,15 +9,11 @@ class Concept(ndb.Model):
 
 class ConceptPage(ndb.Model):
     title = ndb.StringProperty()
-    #using repeated=True makes it behave like a list....BUT
-    #BEWARE -- you can only have one non-LocalStructuredProperty set to repeated=True!
     comments=ndb.StringProperty(repeated=True)
-    #use LcalStructuredProperty for now -- will explain later
     concepts = ndb.LocalStructuredProperty(Concept, repeated=True)
-
     error_message=''
 
-    #create a method to add a concept
+
     def add_concept(self, arg_title='', arg_description=''):
         new_concept = Concept(name=arg_title, description=arg_description)
         self.concepts.append(new_concept)
@@ -38,7 +34,7 @@ class ConceptPage(ndb.Model):
 
 
 
-    #create a method to add a comment
+
     def add_comment(self,new_comment):
         self.comments.append(new_comment)
         self.put()
